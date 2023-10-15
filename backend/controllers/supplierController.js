@@ -1,5 +1,7 @@
 const Supplier = require('../models/supplierModel');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // get all suppliers
 const getSuppliers = async (req, res) => {
@@ -8,7 +10,7 @@ const getSuppliers = async (req, res) => {
   res.status(200).json(suppliers);
 };
 
-// get single site manager
+// get single supplier
 const getSupplier = async (req, res) => {
   const { id } = req.params;
 
@@ -19,15 +21,18 @@ const getSupplier = async (req, res) => {
   const supplier = await Supplier.findById(id);
 
   if (!supplier) {
-    return res.status(404).json({ error: 'No such found' });
+    return res.status(404).json({ error: 'No such supplier found' });
   }
 
   res.status(200).json(supplier);
 };
 
-// create new site manager
+// create new supplier
 const createSupplier = async (req, res) => {
   const { companyname, address, mobileno, email, password } = req.body;
+
+  // Hash the password before storing it
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   // add to db
   try {
@@ -36,7 +41,7 @@ const createSupplier = async (req, res) => {
       address,
       mobileno,
       email,
-      password,
+      password: hashedPassword,
     });
     res.status(200).json(supplier);
   } catch (error) {
@@ -44,44 +49,68 @@ const createSupplier = async (req, res) => {
   }
 };
 
-// delete site manager
+// delete supplier
 const deleteSupplier = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such Supplier' });
+    return res.status(404).json({ error: 'No such supplier' });
   }
 
   const supplier = await Supplier.findOneAndDelete({ _id: id });
 
   if (!supplier) {
-    return res.status(400).json({ error: 'No such found' });
+    return res.status(400).json({ error: 'No such supplier found' });
   }
 
   res.status(200).json(supplier);
 };
 
-//update site manager
+// update supplier
 const updateSupplier = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such Supplier' });
+    return res.status(404).json({ error: 'No such supplier' });
   }
 
-  const supplier = await Supplier.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
-    }
-  );
+  const supplier = await Supplier.findOneAndUpdate({ _id: id }, { ...req.body }, { new: true });
 
   if (!supplier) {
-    return res.status(400).json({ error: 'No such found' });
+    return res.status(400).json({ error: 'No such supplier found' });
   }
 
   res.status(200).json(supplier);
 };
+
+// login supplier
+
+const loginSupplier = async (req, res) => {
+  const { email, password } = req.body;
+
+  // Validate email and password
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required' });
+  }
+
+  // Find the supplier by email
+  const supplier = await Supplier.findOne({ email });
+
+  if (!supplier) {
+    return res.status(401).json({ error: 'Login failed' });
+  }
+
+  // Compare the password with the hashed password in the database
+  const passwordMatch = await bcrypt.compare(password, supplier.password);
+
+  if (!passwordMatch) {
+    return res.status(401).json({ error: 'Login failed' });
+  }
+
+  // If the email and password match, consider the login as successful
+  res.status(200).json({ loginSuccess: true, message: 'Login successful' });
+};
+
 
 module.exports = {
   getSuppliers,
@@ -89,4 +118,5 @@ module.exports = {
   createSupplier,
   deleteSupplier,
   updateSupplier,
+  loginSupplier,
 };

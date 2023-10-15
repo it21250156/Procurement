@@ -18,8 +18,8 @@ export const supplierReducer = (state, action) => {
       };
     case 'UPDATE_SUPPLIER':
       return {
-        feedbacks: [
-          ...state.feedbacks.filter((w) => w._id !== action.payload._id),
+        supplier: [
+          ...state.supplier.filter((w) => w._id !== action.payload._id),
           action.payload,
         ],
       };

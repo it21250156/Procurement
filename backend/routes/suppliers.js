@@ -1,27 +1,30 @@
 const express = require('express');
+const router = express.Router();
 const {
   getSuppliers,
   getSupplier,
   createSupplier,
   deleteSupplier,
   updateSupplier,
+  loginSupplier, // Import the loginSupplier function
 } = require('../controllers/supplierController');
 
-const router = express.Router();
-
-// GET all site managers
+// GET all suppliers
 router.get('/', getSuppliers);
 
-// GET single site managers
+// GET single supplier
 router.get('/:id', getSupplier);
 
-//POST a site manager
+// POST a supplier
 router.post('/', createSupplier);
 
-//DELETE a site manager
+// DELETE a supplier
 router.delete('/:id', deleteSupplier);
 
-//UPDATE a site manager
+// UPDATE a supplier
 router.patch('/:id', updateSupplier);
+
+// POST login route
+router.post('/login', loginSupplier);
 
 module.exports = router;

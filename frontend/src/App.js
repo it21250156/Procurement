@@ -9,6 +9,7 @@ import Suppliers from './pages/Suppliers';
 import { ToastContainer } from 'react-toastify';
 import SupplierAddPage from './pages/SupplierAddPage';
 import OrderRequestsPage from './pages/OrderRequestsPage';
+import SupplierLogin from './pages/SupplierLogin'; 
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/sitemanagers" element={<SiteManagers />} />
             <Route path="/suppliers" element={<Suppliers />}></Route>
+            <Route path="/supplierlogin" element={<SupplierLogin />} />
             <Route
               path="/sitemanageraddpage"
               element={<SiteManagerAddPage />}
