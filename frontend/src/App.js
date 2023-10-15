@@ -11,6 +11,7 @@ import SupplierAddPage from './pages/SupplierAddPage';
 import OrderRequestsPage from './pages/OrderRequestsPage';
 import SupplierLogin from './pages/SupplierLogin';
 import OrderApprovePage from './pages/OrderApprovePage';
+import ConfirmedOrderPage from './pages/ConfirmedOrderPage';
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
             <Route
               path="orderapprove/:orderId"
               element={<OrderApprovePage />}
+            />
+            {/* <Route path="/orderapprove/:orderId" element={<OrderApprovePage />} /> */}
+            <Route
+              path="/confirmedorderpage"
+              element={<ConfirmedOrderPage />}
             />
           </Routes>
         </div>

@@ -1,8 +1,5 @@
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useSupplierContext } from '../hooks/useSuppliersContext';
-
-import Swal from 'sweetalert2';
 
 const OrderRequests = ({ orderRequest }) => {
   return (
