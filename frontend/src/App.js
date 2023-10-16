@@ -14,6 +14,8 @@ import AllProducts from './pages/AllProducts';
 import SupProducts from './pages/SupProducts';
 import AddProduct from './pages/AddProduct';
 import UpdateProductForm from "./components/UpdateProductForm";
+import OrderApprovePage from './pages/OrderApprovePage';
+import ConfirmedOrderPage from './pages/ConfirmedOrderPage';
 
 function App() {
   return (
@@ -36,6 +38,15 @@ function App() {
             <Route path="/supProducts" element={<SupProducts />}/>
             <Route path="/addproduct" element={<AddProduct />} />
             <Route path="/updateproduct/:_id" element={<UpdateProductForm />} />
+            <Route
+              path="orderapprove/:orderId"
+              element={<OrderApprovePage />}
+            />
+            {/* <Route path="/orderapprove/:orderId" element={<OrderApprovePage />} /> */}
+            <Route
+              path="/confirmedorderpage"
+              element={<ConfirmedOrderPage />}
+            />
           </Routes>
         </div>
         <ToastContainer />
