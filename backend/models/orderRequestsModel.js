@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const orderRequestsSchema = new Schema(
   {
     sitemanagerid: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'SiteManager',
       required: true,
     },
     site: {
@@ -16,9 +17,13 @@ const orderRequestsSchema = new Schema(
       type: String,
       required: true,
     },
-    price: {
+    quantity: {
       type: String,
       required: true,
+    },
+    orderstatus: {
+      type: String,
+      default: 'Pending',
     },
   },
   { timestamps: true }

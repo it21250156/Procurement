@@ -1,11 +1,15 @@
 const ConfirmedOrder = require('../models/confirmedOrderModel');
+const supplier = require('../models/supplierModel');
 
 // get all
 const getConfirmedOrders = async (req, res) => {
   try {
-    const confirmedorders = await ConfirmedOrder.find({}).sort({
-      createdAt: -1,
-    });
+    const confirmedorders = await ConfirmedOrder.find({})
+      .populate('supplier')
+      .populate('order')
+      .sort({
+        createdAt: -1,
+      });
     res.status(200).json(confirmedorders);
   } catch (error) {
     console.error(error);

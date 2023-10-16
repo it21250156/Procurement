@@ -1,8 +1,6 @@
 import { useParams } from 'react-router-dom';
 import PageHeading from '../components/PageHeading';
 import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
-import SupplierDetails from '../components/SupplierDetails';
 import SupplierInOrderApprove from '../components/SupplierInOrderApprove';
 
 const OrderApprovePage = () => {
@@ -84,6 +82,7 @@ const OrderApprovePage = () => {
               suppliers.map((supplier) => (
                 <SupplierInOrderApprove
                   supplier={supplier}
+                  orderDetails={orderDetails}
                   key={supplier._id}
                 />
               ))}

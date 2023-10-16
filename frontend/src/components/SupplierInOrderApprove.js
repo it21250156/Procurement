@@ -2,24 +2,48 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const SupplierInOrderApprove = ({ supplier, orderId }) => {
+const SupplierInOrderApprove = ({ supplier, orderDetails }) => {
   const navigate = useNavigate();
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const handleSelect = async () => {
-    // Make an API request to create a confirmed order
+    // Make an API request to create a confirmed order and update the order status
     try {
-      const response = await fetch('/api/confirmedorders/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ supplierId: supplier._id, orderId }),
-      });
+      // First, update the order status to "Accepted"
+      const updateOrderStatusResponse = await fetch(
+        `/api/industry/orderrequests/${orderDetails._id}/update-status`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
-      if (response.ok) {
-        setIsConfirmed(true);
-        navigate('/confirmedorderpage');
+      if (updateOrderStatusResponse.ok) {
+        // If the order status is updated successfully, proceed to create a confirmed order
+        const createConfirmedOrderResponse = await fetch(
+          '/api/confirmedorders/add',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              supplierId: supplier._id,
+              orderId: orderDetails._id,
+            }),
+          }
+        );
+
+        if (createConfirmedOrderResponse.ok) {
+          setIsConfirmed(true);
+          navigate('/confirmedorderpage');
+        } else {
+          console.error('Failed to create confirmed order');
+        }
+      } else {
+        console.error('Failed to update order status');
       }
     } catch (error) {
       console.error(error);
