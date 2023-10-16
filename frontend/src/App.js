@@ -10,9 +10,14 @@ import { ToastContainer } from 'react-toastify';
 import SupplierAddPage from './pages/SupplierAddPage';
 import OrderRequestsPage from './pages/OrderRequestsPage';
 import SupplierLogin from './pages/SupplierLogin';
+import AllProducts from './pages/AllProducts';
+import SupProducts from './pages/SupProducts';
+import AddProduct from './pages/AddProduct';
+import UpdateProductForm from './components/UpdateProductForm';
 import OrderApprovePage from './pages/OrderApprovePage';
 import ConfirmedOrderPage from './pages/ConfirmedOrderPage';
 import UpdateSupplier from './pages/UpdateSupplier';
+import SupplierOrders from './pages/SupplierOrders';
 
 function App() {
   return (
@@ -30,6 +35,12 @@ function App() {
             />
             <Route path="/supplieraddpage" element={<SupplierAddPage />} />
             <Route path="/orderrequests" element={<OrderRequestsPage />} />
+            {/* Malika Routes */}
+            <Route path="/allProducts" element={<AllProducts />} />
+            <Route path="/supProducts" element={<SupProducts />} />
+            <Route path="/addproduct" element={<AddProduct />} />
+            <Route path="/updateproduct/:_id" element={<UpdateProductForm />} />
+            <Route path="/supplierOrders" element={<SupplierOrders />} />
             <Route
               path="orderapprove/:orderId"
               element={<OrderApprovePage />}

@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const createToken = (_id) => {
+
+  return jwt.sign({_id}, process.env.SECRET, {expiresIn: '3d'})
+
+}
+
 // get all suppliers
 const getSuppliers = async (req, res) => {
   const suppliers = await Supplier.find({}).sort({ createdAt: -1 });
@@ -83,33 +89,44 @@ const updateSupplier = async (req, res) => {
   res.status(200).json(supplier);
 };
 
-// login supplier
-
+// loginSupplier function in the backend controller
 const loginSupplier = async (req, res) => {
   const { email, password } = req.body;
 
-  // Validate email and password
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required' });
   }
 
-  // Find the supplier by email
   const supplier = await Supplier.findOne({ email });
 
   if (!supplier) {
     return res.status(401).json({ error: 'Login failed' });
   }
 
-  // Compare the password with the hashed password in the database
   const passwordMatch = await bcrypt.compare(password, supplier.password);
 
   if (!passwordMatch) {
     return res.status(401).json({ error: 'Login failed' });
   }
 
-  // If the email and password match, consider the login as successful
-  res.status(200).json({ loginSuccess: true, message: 'Login successful' });
+  const token = createToken(supplier._id);
+
+  // Adjust the response structure to include supplier details
+  res.status(200).json({
+    loginSuccess: true,
+    token,
+    supplier: {
+      _id: supplier._id,
+      companyname: supplier.companyname,
+      address: supplier.address,
+      mobileno: supplier.mobileno,
+      email: supplier.email,
+     
+    }
+  });
 };
+
+
 
 
 module.exports = {

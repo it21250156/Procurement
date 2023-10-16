@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const siteManagersRoutes = require('./routes/siteManagers');
 const suppliersRoutes = require('./routes/suppliers');
 const orderRequestsRoutes = require('./routes/orderRequests');
+const productRoutes = require('./routes/products')
 const confirmedOrdersRoutes = require('./routes/confirmedOrders');
 
 //express app
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 app.use('/api/industry/sitemanagers', siteManagersRoutes);
 app.use('/api/industry/suppliers', suppliersRoutes);
 app.use('/api/industry/orderrequests', orderRequestsRoutes);
+app.use('/api/products',productRoutes)
 app.use('/api/confirmedorders', confirmedOrdersRoutes);
 
 // connect to db
