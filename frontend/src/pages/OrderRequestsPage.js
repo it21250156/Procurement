@@ -11,7 +11,12 @@ const OrderRequestsPage = () => {
       const json = await response.json();
 
       if (response.ok) {
-        setOrderRequests(json);
+        // Filter the order requests with orderstatus as "Pending"
+        const pendingOrderRequests = json.filter(
+          (orderRequest) => orderRequest.orderstatus === 'Pending'
+        );
+
+        setOrderRequests(pendingOrderRequests);
       }
     };
     fetchOrderRequests();

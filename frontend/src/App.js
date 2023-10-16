@@ -12,6 +12,7 @@ import OrderRequestsPage from './pages/OrderRequestsPage';
 import SupplierLogin from './pages/SupplierLogin';
 import OrderApprovePage from './pages/OrderApprovePage';
 import ConfirmedOrderPage from './pages/ConfirmedOrderPage';
+import UpdateSupplier from './pages/UpdateSupplier';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               path="/confirmedorderpage"
               element={<ConfirmedOrderPage />}
             />
+            <Route path="/updatesupplier" element={<UpdateSupplier />} />
           </Routes>
         </div>
         <ToastContainer />

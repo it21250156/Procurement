@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import { useSupplierContext } from '../hooks/useSuppliersContext';
 
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const SupplierDetails = ({ supplier }) => {
   const { dispatch } = useSupplierContext();
@@ -54,6 +55,9 @@ const SupplierDetails = ({ supplier }) => {
           <Button variant="outline-danger" onClick={handleClick}>
             Delete
           </Button>
+          <Link to={'/updatesupplier'}>
+            <Button variant="outline-info">Update</Button>
+          </Link>
         </div>
       </div>
     </div>
