@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import PageHeading from '../components/PageHeading';
-import { SupplierContext } from "../context/SupplierContext";
+import { SupplierContext } from '../context/SupplierContext';
 
 const ConfirmedOrderPage = () => {
   const { supplier } = useContext(SupplierContext); // Get the supplier information from the context
@@ -36,7 +36,7 @@ const ConfirmedOrderPage = () => {
       })
       .catch((error) => console.error(error));
   };
-  
+
   // Filter confirmed orders based on the logged-in supplier's ID
   const filteredConfirmedOrders = confirmedOrders.filter(
     (confirmedOrder) => confirmedOrder.supplier._id === supplier._id
@@ -67,8 +67,13 @@ const ConfirmedOrderPage = () => {
                   <td>
                     {/* Order status dropdown here */}
                     <select
-                      value={confirmedOrder.order.orderstatus} // Set the initial value from the order's status
-                      onChange={(e) => handleOrderStatusChange(confirmedOrder.order.orderstatus, e.target.value)}
+                      value={confirmedOrder.orderstatus} // Set the initial value from the order's status
+                      onChange={(e) =>
+                        handleOrderStatusChange(
+                          confirmedOrder.orderstatus,
+                          e.target.value
+                        )
+                      }
                     >
                       <option value="Pending">Pending</option>
                       <option value="Accepted">Accepted</option>

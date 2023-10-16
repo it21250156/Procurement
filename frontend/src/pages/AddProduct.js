@@ -1,41 +1,32 @@
-import React, { useEffect } from 'react'
-import ProductForm from '../components/ProductForm'
-import { useProductsContext } from '../hooks/useProductsContext'
+import React, { useEffect } from 'react';
+import ProductForm from '../components/ProductForm';
+import { useProductsContext } from '../hooks/useProductsContext';
+import PageHeading from '../components/PageHeading';
 
+function AddProduct() {
+  const { dispatch } = useProductsContext();
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch('/api/products');
+      const json = await response.json();
 
+      if (response.ok) {
+        dispatch({ type: 'SET_PRODUCTS', payload: json });
+      }
+    };
 
-function AddProduct () {
+    fetchProducts();
+  }, [dispatch]);
 
-    const {dispatch} = useProductsContext()
+  const headingText = 'Add a new Product';
 
-
-    useEffect(() =>{
-        const fetchProducts = async () => {
-          const response = await fetch('/api/products')
-          const json = await response.json()
-    
-          if(response.ok) {
-    
-            dispatch({type: 'SET_PRODUCTS', payload: json})
-            
-          }
-        }
-    
-        fetchProducts()
-      },[dispatch])
-    
-    return (
-        <div className= "AddProductsPage">
- 
-  <ProductForm/>
-  
-</div>
-
-    )
-
-
+  return (
+    <div className="container w-50 border border-success p-2 mb-2 border-opacity-25 rounded-2 mt-3 mb-3 shadow-sm">
+      <PageHeading text={headingText}></PageHeading>
+      <ProductForm />
+    </div>
+  );
 }
 
-export default AddProduct
-
+export default AddProduct;

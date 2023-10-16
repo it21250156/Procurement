@@ -10,8 +10,8 @@ const confirmedOrderSchema = new mongoose.Schema({
     ref: 'OrderRequest',
   },
   orderStatus: {
-    type: String, 
-    default: 'Pending', 
+    type: String,
+    default: 'Pending',
   },
 });
 
