@@ -20,11 +20,12 @@ const getConfirmedOrders = async (req, res) => {
 // create
 const createConfirmedOrder = async (req, res) => {
   try {
-    const { supplierId, orderId } = req.body;
+    const { supplierId, orderId, orderStatus } = req.body;
 
     const confirmedOrder = new ConfirmedOrder({
       supplier: supplierId,
       order: orderId,
+      orderStatus, // Include the orderStatus field
     });
 
     await confirmedOrder.save();
@@ -35,7 +36,27 @@ const createConfirmedOrder = async (req, res) => {
   }
 };
 
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId, newStatus } = req.body;
+
+    const confirmedOrder = await ConfirmedOrder.findById(orderId);
+    if (!confirmedOrder) {
+      return res.status(404).json({ error: 'Confirmed order not found' });
+    }
+
+    confirmedOrder.orderStatus = newStatus;
+    await confirmedOrder.save();
+
+    res.json({ message: 'Order status updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to update order status' });
+  }
+};
+
 module.exports = {
   getConfirmedOrders,
   createConfirmedOrder,
+  updateOrderStatus, 
 };

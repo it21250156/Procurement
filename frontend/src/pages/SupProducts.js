@@ -72,8 +72,14 @@ const SupProducts = () => {
         <Link to="/addproduct">Add new Product</Link>
       </button>
 
+      <button className="add-product-btn">
+        <Link to="/supplierOrders">Orders</Link>
+      </button>
+
       {/** Logout button */}
       <button onClick={handleLogout}>Logout</button>
+
+
 
     </div>
   );
