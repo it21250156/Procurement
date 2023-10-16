@@ -13,6 +13,7 @@ const NavBar = () => {
             <Nav.Link href="/sitemanagers">Site Managers</Nav.Link>
             <Nav.Link href="/suppliers">Suppliers</Nav.Link>
             <Nav.Link href="/supplierlogin">Supplier Login</Nav.Link>
+            <Nav.Link href="/allProducts">All Products</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
