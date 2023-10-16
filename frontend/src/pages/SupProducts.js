@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Button } from 'react-bootstrap';
 import PageHeading from '../components/PageHeading';
+import { Container, Navbar } from 'react-bootstrap';
 
 const SupProducts = () => {
   const { products, dispatch } = useProductsContext();
@@ -64,23 +65,32 @@ const SupProducts = () => {
   const headingText = 'My Products';
 
   return (
-    <div className="container w-50 border border-success p-2 mb-2 border-opacity-25 rounded-2 mt-3 mb-3 shadow-sm ">
-      <PageHeading text={headingText}></PageHeading>
-      <Link to="/addproduct">
-        <Button className="btn-primary m-2">Add new Product</Button>
-      </Link>
-      <Link to="/supplierOrders">
-        <Button className="btn-primary m-2">Orders</Button>
-      </Link>
-      {/** Logout button */}
-      <Button className="btn-danger m-2" onClick={handleLogout}>
-        Logout
-      </Button>
-      <div className="products">
-        {products &&
-          products.map((product) => (
-            <ProductDetailsSup key={product._id} product={product} />
-          ))}
+    <div>
+      <header>
+        <Navbar bg="primary" data-bs-theme="dark">
+          <Container>
+            <Navbar.Brand href="/supplierlogin">Home</Navbar.Brand>
+          </Container>
+        </Navbar>
+      </header>
+      <div className="container w-50 border border-success p-2 mb-2 border-opacity-25 rounded-2 mt-3 mb-3 shadow-sm ">
+        <PageHeading text={headingText}></PageHeading>
+        <Link to="/addproduct">
+          <Button className="btn-primary m-2">Add new Product</Button>
+        </Link>
+        <Link to="/supplierOrders">
+          <Button className="btn-primary m-2">Orders</Button>
+        </Link>
+        {/** Logout button */}
+        <Button className="btn-danger m-2" onClick={handleLogout}>
+          Logout
+        </Button>
+        <div className="products">
+          {products &&
+            products.map((product) => (
+              <ProductDetailsSup key={product._id} product={product} />
+            ))}
+        </div>
       </div>
     </div>
   );

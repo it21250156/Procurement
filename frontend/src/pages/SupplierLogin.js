@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { SupplierContext } from '../context/SupplierContext';
 import PageHeading from '../components/PageHeading';
+import { Container, Navbar } from 'react-bootstrap';
 
 const SupplierLogin = () => {
   const [email, setEmail] = useState('');
@@ -90,6 +91,13 @@ const SupplierLogin = () => {
 
   return (
     <div>
+      <header>
+        <Navbar bg="primary" data-bs-theme="dark">
+          <Container>
+            <Navbar.Brand href="/supplierlogin">Home</Navbar.Brand>
+          </Container>
+        </Navbar>
+      </header>
       <div class="container w-50 border border-success p-2 mb-2 border-opacity-25 rounded-2 mt-2 mb-2 shadow-sm ">
         <PageHeading text={headingText}></PageHeading>
         <form onSubmit={handleLogin}>

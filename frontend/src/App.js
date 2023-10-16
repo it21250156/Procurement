@@ -23,7 +23,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
         <div className="pages">
           <Routes>
             <Route path="/sitemanagers" element={<SiteManagers />} />
