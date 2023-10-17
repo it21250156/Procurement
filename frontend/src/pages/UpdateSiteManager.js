@@ -106,7 +106,7 @@ const UpdateSiteManager = () => {
     if (!response.ok) {
       setError(json.error);
     } else {
-      // If the response is successful, display a SweetAlert2 success notification
+      // If the response is successful, display a SweetAlert success notification
       Swal.fire({
         title: 'Success!',
         text: 'Site Manager updated successfully',
@@ -118,7 +118,7 @@ const UpdateSiteManager = () => {
           setError(null);
           dispatch({ type: 'UPDATE_SITEMANAGER', payload: json });
           console.log('site manager updated', json);
-          // You should replace '/sitemanagers' with the correct path to your SiteManager page
+
           window.location.href = '/sitemanagers';
         }
       });

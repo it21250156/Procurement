@@ -30,6 +30,7 @@ const ConfirmedOrderPage = () => {
                 <th>Supplier Email</th>
                 <th>Order Site</th>
                 <th>Ordered Item</th>
+                <th>Supplier Status</th>
               </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@ const ConfirmedOrderPage = () => {
                   <td>{confirmedOrder.supplier.email}</td>
                   <td>{confirmedOrder.order.quantity}</td>
                   <td>{confirmedOrder.order.item}</td>
+                  <td>{confirmedOrder.orderStatus}</td>
                 </tr>
               ))}
             </tbody>

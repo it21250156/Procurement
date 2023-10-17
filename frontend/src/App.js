@@ -53,7 +53,7 @@ function App() {
               path="orderapprove/:orderId"
               element={<OrderApprovePage />}
             />
-            {/* <Route path="/orderapprove/:orderId" element={<OrderApprovePage />} /> */}
+
             <Route
               path="/confirmedorderpage"
               element={<ConfirmedOrderPage />}
