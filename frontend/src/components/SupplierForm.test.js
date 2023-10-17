@@ -1,8 +1,6 @@
-/* eslint-disable testing-library/no-render-in-setup */
-/* eslint-disable testing-library/no-unnecessary-act */
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import SupplierForm from './SupplierForm'; // Adjust the import path as needed
+import SupplierForm from './SupplierForm'; 
 
 // Mock the useSupplierContext hook to provide a mock dispatch function
 jest.mock('../hooks/useSuppliersContext', () => ({

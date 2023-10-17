@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ProductDetails from './ProductDetails'; // Adjust the import path as needed
+import ProductDetails from './ProductDetails'; 
 
 // Mock the useProductsContext hook to provide a mock dispatch function
 jest.mock('../hooks/useProductsContext', () => ({

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SupplierContext } from '../context/SupplierContext';
-import ProductForm from './ProductForm'; // Adjust the import path as needed
+import ProductForm from './ProductForm'; 
 
 const mockSupplier = {
   _id: 'supplier123',
@@ -81,5 +81,5 @@ test('handles form submission', async () => {
     },
   });
 
-  // Add assertions for success message, clearing inputs, etc.
+ 
 });

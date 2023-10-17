@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import SiteManagerForm from './SiteManagerForm'; // Adjust the import path as needed
+import SiteManagerForm from './SiteManagerForm';
 
 // Mock the useSiteManagerContext hook to provide a mock dispatch function
 jest.mock('../hooks/useSiteManagersContext', () => ({
@@ -42,11 +42,11 @@ test('handles form submission and success', async () => {
   // Fill out the form fields
   const nameInput = screen.getByLabelText('Site Manager Name');
   const usernameInput = screen.getByLabelText('Username');
-  // ... Fill out other form fields as needed
+  
 
   fireEvent.change(nameInput, { target: { value: 'John Doe' } });
   fireEvent.change(usernameInput, { target: { value: 'johndoe' } });
-  // ... Change other form fields as needed
+  
 
   // Submit the form
   const submitButton = screen.getByText('Add Site Manager');
@@ -66,5 +66,5 @@ test('handles form submission and success', async () => {
   // Ensure that form fields are cleared
   expect(nameInput.value).toBe('');
   expect(usernameInput.value).toBe('');
-  // ... Check other form fields as needed
+ 
 });

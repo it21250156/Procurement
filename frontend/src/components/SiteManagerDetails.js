@@ -24,7 +24,7 @@ const SiteManagerDetails = ({ siteManager }) => {
             method: 'DELETE',
           }
         );
-        // const json = await response.json();
+        
         if (response.ok) {
           // If the deletion is successful, show a success notification
           Swal.fire('Deleted!', 'The sitemanager has been deleted.', 'success');

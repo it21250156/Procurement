@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import SupplierDetails from './SupplierDetails'; // Adjust the import path as needed
+import SupplierDetails from './SupplierDetails'; 
 
 // Mock the useSupplierContext hook to provide a mock dispatch function
 jest.mock('../hooks/useSuppliersContext', () => ({
