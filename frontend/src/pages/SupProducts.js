@@ -28,7 +28,7 @@ const SupProducts = () => {
         // User confirmed, perform the logout action
         supplierDispatch({ type: 'LOGOUT' });
         localStorage.removeItem('supplier');
-        navigate('/allProducts');
+        navigate('/');
       }
     });
   };

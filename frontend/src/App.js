@@ -18,6 +18,7 @@ import ConfirmedOrderPage from './pages/ConfirmedOrderPage';
 import UpdateSupplier from './pages/UpdateSupplier';
 import SupplierOrders from './pages/SupplierOrders';
 import Home from './pages/Home';
+import AdminLogin from './pages/AdminLogin';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <BrowserRouter>
         <div className="pages">
           <Routes>
+            <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/" element={<Home />} />
             <Route path="/sitemanagers" element={<SiteManagers />} />
             <Route path="/suppliers" element={<Suppliers />}></Route>

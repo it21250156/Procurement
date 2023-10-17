@@ -1,6 +1,8 @@
 const SiteManager = require('../models/siteManagerModel');
 const mongoose = require('mongoose');
 
+const bcrypt = require('bcrypt');
+
 // get all site managers
 const getSiteManagers = async (req, res) => {
   const sitemanagers = await SiteManager.find({}).sort({ createdAt: -1 });
@@ -30,6 +32,9 @@ const createSiteManager = async (req, res) => {
   const { name, username, sitename, siteaddress, mobileno, email, password } =
     req.body;
 
+  // Hash the password before storing it
+  const hashedPassword = await bcrypt.hash(password, 10);
+
   // add to db
   try {
     const siteManager = await SiteManager.create({
@@ -39,7 +44,7 @@ const createSiteManager = async (req, res) => {
       siteaddress,
       mobileno,
       email,
-      password,
+      password: hashedPassword,
     });
     res.status(200).json(siteManager);
   } catch (error) {

@@ -21,7 +21,6 @@ const NavBar = () => {
             </NavDropdown>
             <Nav.Link href="/sitemanagers">Site Managers</Nav.Link>
             <Nav.Link href="/suppliers">Suppliers</Nav.Link>
-            <Nav.Link href="/supplierlogin">Supplier Login</Nav.Link>
             <Nav.Link href="/allProducts">All Products</Nav.Link>
           </Nav>
         </Container>

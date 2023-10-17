@@ -18,6 +18,14 @@ const SupplierForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Basic client-side validations
+    if (!companyname || !address || !mobileno || !email || !password) {
+      setError('All fields are required');
+      return;
+    }
+
+    // You can add more specific validations for each field as needed
+
     const siteManager = {
       companyname,
       address,
@@ -46,7 +54,6 @@ const SupplierForm = () => {
         icon: 'success',
         confirmButtonText: 'OK',
       }).then((result) => {
-        // After the user clicks "OK," navigate to the SiteManager page
         if (result.isConfirmed) {
           setCompanyName('');
           setAddress('');
@@ -56,7 +63,7 @@ const SupplierForm = () => {
           setError(null);
           dispatch({ type: 'CREATE_SUPPLIER', payload: json });
           console.log('new supplier added', json);
-          // You should replace '/sitemanager' with the correct path to your SiteManager page
+
           window.location.href = '/suppliers';
         }
       });
@@ -66,25 +73,25 @@ const SupplierForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label for="companyNameInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="companyNameInput" className="form-label">
             Company Name
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="companyNameInput"
             onChange={(e) => setCompanyName(e.target.value)}
             value={companyname}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="addressTextarea" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="addressTextarea" className="form-label">
             Company Address
           </label>
           <textarea
-            class="form-control"
+            className="form-control"
             id="addressTextarea"
             rows="3"
             onChange={(e) => setAddress(e.target.value)}
@@ -92,46 +99,46 @@ const SupplierForm = () => {
           ></textarea>
         </div>
 
-        <div class="mb-3">
-          <label for="mobileNoInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="mobileNoInput" className="form-label">
             Mobile No
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="mobileNoInput"
             onChange={(e) => setMobileNo(e.target.value)}
             value={mobileno}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="emailInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="emailInput" className="form-label">
             Email Address
           </label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="emailInput"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="passwordInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="passwordInput" className="form-label">
             Password
           </label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="passwordInput"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Add Supplier
         </button>
 

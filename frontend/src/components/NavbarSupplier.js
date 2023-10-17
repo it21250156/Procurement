@@ -6,7 +6,7 @@ const NavbarSupplier = () => {
     <header>
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/supplierlogin">Home</Navbar.Brand>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
         </Container>
       </Navbar>
     </header>
