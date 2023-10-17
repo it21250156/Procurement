@@ -55,7 +55,7 @@ const ProductDetailsSup = ({ product }) => {
           </Button>
 
           <Link to={`/updateproduct/${product._id}`}>
-            <Button className="btn-info m-2">Update product</Button>
+            <Button className="btn-info m-2">Update Product</Button>
           </Link>
         </div>
         <div class="card-footer text-body-secondary">

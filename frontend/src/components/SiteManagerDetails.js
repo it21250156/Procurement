@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import { useSiteManagerContext } from '../hooks/useSiteManagersContext';
 
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const SiteManagerDetails = ({ siteManager }) => {
   const { dispatch } = useSiteManagerContext();
@@ -58,6 +59,9 @@ const SiteManagerDetails = ({ siteManager }) => {
           <Button variant="outline-danger" onClick={handleClick}>
             Delete
           </Button>
+          <Link to={`/updatesitemanager/${siteManager._id}`}>
+            <Button variant="outline-info">Update</Button>
+          </Link>
         </div>
       </div>
     </div>

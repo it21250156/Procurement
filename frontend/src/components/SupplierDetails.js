@@ -55,7 +55,7 @@ const SupplierDetails = ({ supplier }) => {
           <Button variant="outline-danger" onClick={handleClick}>
             Delete
           </Button>
-          <Link to={'/updatesupplier'}>
+          <Link to={`/updatesupplier/${supplier._id}`}>
             <Button variant="outline-info">Update</Button>
           </Link>
         </div>

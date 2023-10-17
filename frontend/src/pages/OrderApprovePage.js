@@ -62,24 +62,29 @@ const OrderApprovePage = () => {
               <td>Ordered Item</td>
               <td>{orderDetails.item}</td>
             </tr>
+            <tr>
+              <td>Ordered Quantity</td>
+              <td>{orderDetails.quantity}</td>
+            </tr>
           </table>
         </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
             type="button"
-            class="btn btn-success btn-lg m-1"
+            class="btn btn-success m-1"
             onClick={handleApprove}
             disabled={isApproved}
           >
             Approve
           </button>
-          <button type="button" class="btn btn-danger btn-lg m-1">
+          <button type="button" class="btn btn-danger  m-1">
             Decline
           </button>
         </div>
-
-        {isApproved && (
-          <div className="SupplierInOrderApprove mt-3">
+      </div>
+      {isApproved && (
+        <div className="SupplierInOrderApprove mt-3">
+          <div>
             {suppliers &&
               suppliers.map((supplier) => (
                 <SupplierInOrderApprove
@@ -89,8 +94,8 @@ const OrderApprovePage = () => {
                 />
               ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

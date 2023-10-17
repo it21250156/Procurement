@@ -19,6 +19,7 @@ import UpdateSupplier from './pages/UpdateSupplier';
 import SupplierOrders from './pages/SupplierOrders';
 import Home from './pages/Home';
 import AdminLogin from './pages/AdminLogin';
+import UpdateSiteManager from './pages/UpdateSiteManager';
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
             />
             <Route path="/supplieraddpage" element={<SupplierAddPage />} />
             <Route path="/orderrequests" element={<OrderRequestsPage />} />
+            <Route path="/updatesupplier/:sid" element={<UpdateSupplier />} />
+            <Route
+              path="/updatesitemanager/:smid"
+              element={<UpdateSiteManager />}
+            />
             {/* Malika Routes */}
             <Route path="/allProducts" element={<AllProducts />} />
             <Route path="/supProducts" element={<SupProducts />} />

@@ -3,7 +3,7 @@ import PageHeading from '../components/PageHeading';
 import { SupplierContext } from '../context/SupplierContext';
 import NavbarSupplier from '../components/NavbarSupplier';
 
-const ConfirmedOrderPage = () => {
+const SupplierOrders = () => {
   const { supplier } = useContext(SupplierContext); // Get the supplier information from the context
 
   const [confirmedOrders, setConfirmedOrders] = useState([]);
@@ -61,7 +61,7 @@ const ConfirmedOrderPage = () => {
             </thead>
             <tbody>
               {filteredConfirmedOrders.map((confirmedOrder) => (
-                <tr key={confirmedOrder.order._id}>
+                <tr key={confirmedOrder._id}>
                   <td>{confirmedOrder.order.sitemanagerid}</td>
                   <td>{confirmedOrder.order.site}</td>
                   <td>{confirmedOrder.order.item}</td>
@@ -92,4 +92,4 @@ const ConfirmedOrderPage = () => {
   );
 };
 
-export default ConfirmedOrderPage;
+export default SupplierOrders;
