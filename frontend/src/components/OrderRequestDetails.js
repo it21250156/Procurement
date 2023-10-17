@@ -4,18 +4,20 @@ import { Link } from 'react-router-dom';
 const OrderRequests = ({ orderRequest }) => {
   return (
     <div className="sitemanager_details">
-      <div class="card mb-2 w-75">
-        <div class="card-body">
-          <h5 class="card-title">{orderRequest.site}</h5>
-          <p class="card-text">
+      <div className="card mb-2 w-75">
+        <div className="card-body">
+          <h5 className="card-title">{orderRequest.site}</h5>
+          <p className="card-text">
             <strong>Site Manager Name : </strong>
-            {orderRequest.sitemanagerid.name}
+            {orderRequest.sitemanagerid
+              ? orderRequest.sitemanagerid.name
+              : 'N/A'}
           </p>
-          <p class="card-text">
+          <p className="card-text">
             <strong>Item : </strong>
             {orderRequest.item}
           </p>
-          <p class="card-text">
+          <p className="card-text">
             <strong>Quantity : </strong>
             {orderRequest.quantity}
           </p>

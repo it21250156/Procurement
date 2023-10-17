@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //pages and components
 import SiteManagers from './pages/SiteManagers';
-import NavBar from './components/NavBar';
 import SiteManagerAddPage from './pages/SiteManagerAddPage';
 import Suppliers from './pages/Suppliers';
 import { ToastContainer } from 'react-toastify';
@@ -18,6 +17,7 @@ import OrderApprovePage from './pages/OrderApprovePage';
 import ConfirmedOrderPage from './pages/ConfirmedOrderPage';
 import UpdateSupplier from './pages/UpdateSupplier';
 import SupplierOrders from './pages/SupplierOrders';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
       <BrowserRouter>
         <div className="pages">
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/sitemanagers" element={<SiteManagers />} />
             <Route path="/suppliers" element={<Suppliers />}></Route>
             <Route path="/supplierlogin" element={<SupplierLogin />} />

@@ -8,7 +8,7 @@ const NavBar = () => {
     <header>
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/supplierlogin">Home</Navbar.Brand>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
           <Nav className="me-auto">
             <NavDropdown title="Orders" id="basic-nav-dropdown">
               <NavDropdown.Item href="/orderrequests">
@@ -23,8 +23,6 @@ const NavBar = () => {
             <Nav.Link href="/suppliers">Suppliers</Nav.Link>
             <Nav.Link href="/supplierlogin">Supplier Login</Nav.Link>
             <Nav.Link href="/allProducts">All Products</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

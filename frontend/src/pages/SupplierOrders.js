@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import PageHeading from '../components/PageHeading';
 import { SupplierContext } from '../context/SupplierContext';
-import { Container, Navbar } from 'react-bootstrap';
+import NavbarSupplier from '../components/NavbarSupplier';
 
 const ConfirmedOrderPage = () => {
   const { supplier } = useContext(SupplierContext); // Get the supplier information from the context
@@ -45,13 +45,7 @@ const ConfirmedOrderPage = () => {
 
   return (
     <div>
-      <header>
-        <Navbar bg="primary" data-bs-theme="dark">
-          <Container>
-            <Navbar.Brand href="/supplierlogin">Home</Navbar.Brand>
-          </Container>
-        </Navbar>
-      </header>
+      <NavbarSupplier />
       <div className="container w-50 border border-success p-3 mb-2 border-opacity-25 rounded-2 mt-2 mb-2 shadow-sm">
         <PageHeading text={headingText}></PageHeading>
         {filteredConfirmedOrders.length > 0 && (
