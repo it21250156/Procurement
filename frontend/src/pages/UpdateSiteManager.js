@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSiteManagerContext } from '../hooks/useSiteManagersContext';
-
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
@@ -54,6 +53,36 @@ const UpdateSiteManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name) {
+      toast.warn('Site Manager Name is required');
+      return;
+    }
+
+    if (!username) {
+      toast.warn('Username is required');
+      return;
+    }
+
+    if (!sitename) {
+      toast.warn('Site Name is required');
+      return;
+    }
+
+    if (!siteaddress) {
+      toast.warn('Site Address is required');
+      return;
+    }
+
+    if (!mobileno) {
+      toast.warn('Mobile No is required');
+      return;
+    }
+
+    if (!email) {
+      toast.warn('Email Address is required');
+      return;
+    }
+
     const updatedSiteManager = {
       name,
       username,
@@ -89,7 +118,7 @@ const UpdateSiteManager = () => {
           setError(null);
           dispatch({ type: 'UPDATE_SITEMANAGER', payload: json });
           console.log('site manager updated', json);
-          // You should replace '/sitemanager' with the correct path to your SiteManager page
+          // You should replace '/sitemanagers' with the correct path to your SiteManager page
           window.location.href = '/sitemanagers';
         }
       });
@@ -104,51 +133,51 @@ const UpdateSiteManager = () => {
       <div className="container w-50 border border-success p-2 mb-2 border-opacity-25 rounded-2 mt-2 mb-2 shadow-sm">
         <PageHeading text={headingText}></PageHeading>
         <form onSubmit={handleSubmit}>
-          <div class="mb-3">
-            <label for="nameInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="nameInput" className="form-label">
               Site Manager Name
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="nameInput"
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
           </div>
 
-          <div class="mb-3">
-            <label for="usernameInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="usernameInput" className="form-label">
               Username
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="usernameInput"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
             />
           </div>
 
-          <div class="mb-3">
-            <label for="siteNameInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="siteNameInput" className="form-label">
               Site Name
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="siteNameInput"
               onChange={(e) => setSitename(e.target.value)}
               value={sitename}
             />
           </div>
 
-          <div class="mb-3">
-            <label for="siteAddressTextarea" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="siteAddressTextarea" className="form-label">
               Site Address
             </label>
             <textarea
-              class="form-control"
+              className="form-control"
               id="siteAddressTextarea"
               rows="3"
               onChange={(e) => setSiteAddress(e.target.value)}
@@ -156,33 +185,33 @@ const UpdateSiteManager = () => {
             ></textarea>
           </div>
 
-          <div class="mb-3">
-            <label for="mobileNoInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="mobileNoInput" className="form-label">
               Mobile No
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="mobileNoInput"
               onChange={(e) => setMobileNo(e.target.value)}
               value={mobileno}
             />
           </div>
 
-          <div class="mb-3">
-            <label for="emailInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="emailInput" className="form-label">
               Email Address
             </label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="emailInput"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg">
+          <button type="submit" className="btn btn-primary btn-lg">
             Update
           </button>
 

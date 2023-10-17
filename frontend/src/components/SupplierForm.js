@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useSupplierContext } from '../hooks/useSuppliersContext';
-
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 
 const SupplierForm = () => {
@@ -13,34 +12,61 @@ const SupplierForm = () => {
   const [mobileno, setMobileNo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState({
+    companyname: '',
+    address: '',
+    mobileno: '',
+    email: '',
+    password: '',
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (mobileno.length !== 10) {
-      // Display a toast error message
-      toast.error('Mobile number must contain exactly 10 digits.');
+    // Empty field validations
+    const formErrors = {};
+    if (!companyname) {
+      formErrors.companyname = 'Company Name is required';
+      toast.warn('Company Name is required');
+    }
+    if (!address) {
+      formErrors.address = 'Company Address is required';
+      toast.warn('Company Address is required');
+    }
+    if (!mobileno) {
+      formErrors.mobileno = 'Mobile No is required';
+      toast.warn('Mobile No is required');
+    } else if (mobileno.length !== 10) {
+      formErrors.mobileno = 'Mobile No must contain exactly 10 digits';
+      toast.warn('Mobile No must contain exactly 10 digits');
+    }
+    if (!email) {
+      formErrors.email = 'Email Address is required';
+      toast.warn('Email Address is required');
+    }
+    if (!password) {
+      formErrors.password = 'Password is required';
+      toast.warn('Password is required');
+    } else {
+      // Password validation: Requires at least one letter and one number
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      if (!password.match(passwordRegex)) {
+        formErrors.password =
+          'Password must contain at least one letter and one number and be at least 8 characters long';
+        toast.warn(
+          'Password must contain at least one letter and one number and be at least 8 characters long'
+        );
+      }
+    }
+
+    setError(formErrors);
+
+    if (Object.keys(formErrors).length > 0) {
       return;
     }
 
-    // Password validation: Requires at least one letter and one number
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!password.match(passwordRegex)) {
-      // Display a toast error message for the password format
-      toast.error(
-        'Password must contain at least one letter and one number and be at least 8 characters long.'
-      );
-      return;
-    }
-
-    // Basic client-side validations
-    if (!companyname || !address || !mobileno || !email || !password) {
-      setError('All fields are required');
-      return;
-    }
-
-    // You can add more specific validations for each field as needed
+    // Clear the previous error state
+    setError({});
 
     const siteManager = {
       companyname,
@@ -61,7 +87,7 @@ const SupplierForm = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      setError(json.error);
+      setError({ ...error, ...json.error });
     } else {
       // If the response is successful, display a SweetAlert2 success notification
       Swal.fire({
@@ -157,8 +183,6 @@ const SupplierForm = () => {
         <button type="submit" className="btn btn-primary btn-lg">
           Add Supplier
         </button>
-
-        {error && <div className="error">{error}</div>}
       </form>
       <ToastContainer />
     </div>

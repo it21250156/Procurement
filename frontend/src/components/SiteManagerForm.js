@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useSiteManagerContext } from '../hooks/useSiteManagersContext';
-
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 
 const SiteManagerForm = () => {
@@ -20,17 +19,50 @@ const SiteManagerForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name) {
+      toast.warn('Site Manager Name is required');
+      return;
+    }
+
+    if (!username) {
+      toast.warn('Username is required');
+      return;
+    }
+
+    if (!sitename) {
+      toast.warn('Site Name is required');
+      return;
+    }
+
+    if (!siteaddress) {
+      toast.warn('Site Address is required');
+      return;
+    }
+
+    if (!mobileno) {
+      toast.warn('Mobile No is required');
+      return;
+    }
+
     if (mobileno.length !== 10) {
-      // Display a toast error message
-      toast.error('Mobile number must contain exactly 10 digits.');
+      toast.warn('Mobile number must contain exactly 10 digits.');
+      return;
+    }
+
+    if (!email) {
+      toast.warn('Email Address is required');
+      return;
+    }
+
+    if (!password) {
+      toast.warn('Password is required');
       return;
     }
 
     // Password validation: Requires at least one letter and one number
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (!password.match(passwordRegex)) {
-      // Display a toast error message for the password format
-      toast.error(
+      toast.warn(
         'Password must contain at least one letter and one number and be at least 8 characters long.'
       );
       return;
@@ -88,51 +120,51 @@ const SiteManagerForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label for="nameInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="nameInput" className="form-label">
             Site Manager Name
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="nameInput"
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="usernameInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="usernameInput" className="form-label">
             Username
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="usernameInput"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="siteNameInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="siteNameInput" className="form-label">
             Site Name
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="siteNameInput"
             onChange={(e) => setSitename(e.target.value)}
             value={sitename}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="siteAddressTextarea" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="siteAddressTextarea" className="form-label">
             Site Address
           </label>
           <textarea
-            class="form-control"
+            className="form-control"
             id="siteAddressTextarea"
             rows="3"
             onChange={(e) => setSiteAddress(e.target.value)}
@@ -140,46 +172,46 @@ const SiteManagerForm = () => {
           ></textarea>
         </div>
 
-        <div class="mb-3">
-          <label for="mobileNoInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="mobileNoInput" className="form-label">
             Mobile No
           </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="mobileNoInput"
             onChange={(e) => setMobileNo(e.target.value)}
             value={mobileno}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="emailInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="emailInput" className="form-label">
             Email Address
           </label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="emailInput"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
         </div>
 
-        <div class="mb-3">
-          <label for="passwordInput" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="passwordInput" className="form-label">
             Password
           </label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="passwordInput"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg">
+        <button type="submit" className="btn btn-primary btn-lg">
           Add Site Manager
         </button>
 

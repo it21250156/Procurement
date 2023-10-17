@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useSupplierContext } from '../hooks/useSuppliersContext';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import NavBar from '../components/NavBar';
@@ -43,7 +43,25 @@ const UpdateSupplier = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if selectedSupplier and its _id property are defined
+    if (!companyname) {
+      toast.warn('Company Name is required');
+      return;
+    }
+
+    if (!address) {
+      toast.warn('Company Address is required');
+      return;
+    }
+
+    if (!mobileno) {
+      toast.warn('Mobile No is required');
+      return;
+    }
+
+    if (!email) {
+      toast.warn('Email Address is required');
+      return;
+    }
 
     const updatedSupplier = {
       companyname,
@@ -91,25 +109,25 @@ const UpdateSupplier = () => {
       <div className="allProducts  container w-50 border border-success p-2 mb-2 border-opacity-25 rounded-2 mt-2 mb-2 shadow-sm">
         <PageHeading text={headingText}></PageHeading>
         <form onSubmit={handleSubmit}>
-          <div class="mb-3">
-            <label for="companyNameInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="companyNameInput" className="form-label">
               Company Name
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="companyNameInput"
               onChange={(e) => setCompanyName(e.target.value)}
               value={companyname}
             />
           </div>
 
-          <div class="mb-3">
-            <label for="addressTextarea" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="addressTextarea" className="form-label">
               Company Address
             </label>
             <textarea
-              class="form-control"
+              className="form-control"
               id="addressTextarea"
               rows="3"
               onChange={(e) => setAddress(e.target.value)}
@@ -117,26 +135,26 @@ const UpdateSupplier = () => {
             ></textarea>
           </div>
 
-          <div class="mb-3">
-            <label for="mobileNoInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="mobileNoInput" className="form-label">
               Mobile No
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="mobileNoInput"
               onChange={(e) => setMobileNo(e.target.value)}
               value={mobileno}
             />
           </div>
 
-          <div class="mb-3">
-            <label for="emailInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="emailInput" className="form-label">
               Email Address
             </label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="emailInput"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -155,4 +173,5 @@ const UpdateSupplier = () => {
     </div>
   );
 };
+
 export default UpdateSupplier;

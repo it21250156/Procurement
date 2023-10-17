@@ -43,7 +43,13 @@ const OrderApprovePage = () => {
   };
 
   if (!orderDetails) {
-    return <div>Loading...</div>;
+    return (
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   const headingText = 'Approve Order';
