@@ -84,7 +84,10 @@ const OrderApprovePage = () => {
       </div>
       {isApproved && (
         <div className="SupplierInOrderApprove mt-3">
-          <div>
+          <div class="container w-50 border border-success p-3 mb-2 border-opacity-25 rounded-2 mt-2 mb-2 shadow-sm ">
+            <div className="container border border-primary rounded-2 mb-4 p-2 text-center text-primary">
+              <h3>Related Suppliers</h3>
+            </div>
             {suppliers &&
               suppliers.map((supplier) => (
                 <SupplierInOrderApprove
