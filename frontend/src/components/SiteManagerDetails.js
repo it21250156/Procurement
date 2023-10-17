@@ -56,11 +56,11 @@ const SiteManagerDetails = ({ siteManager }) => {
             {siteManager.sitename}
           </p>
 
-          <Button variant="outline-danger" onClick={handleClick}>
+          <Button variant="outline-danger m-2" onClick={handleClick}>
             Delete
           </Button>
           <Link to={`/updatesitemanager/${siteManager._id}`}>
-            <Button variant="outline-info">Update</Button>
+            <Button variant="outline-info m-2">Update</Button>
           </Link>
         </div>
       </div>

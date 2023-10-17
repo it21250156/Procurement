@@ -32,9 +32,6 @@ const createSiteManager = async (req, res) => {
   const { name, username, sitename, siteaddress, mobileno, email, password } =
     req.body;
 
-  // Hash the password before storing it
-  const hashedPassword = await bcrypt.hash(password, 10);
-
   // add to db
   try {
     const siteManager = await SiteManager.create({
@@ -44,7 +41,7 @@ const createSiteManager = async (req, res) => {
       siteaddress,
       mobileno,
       email,
-      password: hashedPassword,
+      password,
     });
     res.status(200).json(siteManager);
   } catch (error) {

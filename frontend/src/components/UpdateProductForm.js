@@ -3,6 +3,7 @@ import { useProductsContext } from '../hooks/useProductsContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'; // Import SweetAlert2
 import PageHeading from './PageHeading';
+import { Button } from 'react-bootstrap';
 
 const UpdateProductForm = () => {
   const { dispatch } = useProductsContext();
@@ -139,7 +140,9 @@ const UpdateProductForm = () => {
         />
         {errors.pPrice && <div className="error">{errors.pPrice}</div>}
 
-        <button>Update Product</button>
+        <Button type="submit" className="btn-primary btn-lg m-2">
+          Update Product
+        </Button>
         {errors.submit && <div className="error">{errors.submit}</div>}
       </form>
     </div>

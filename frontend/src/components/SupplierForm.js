@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSupplierContext } from '../hooks/useSuppliersContext';
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
 import Swal from 'sweetalert2';
 
@@ -17,6 +17,22 @@ const SupplierForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (mobileno.length !== 10) {
+      // Display a toast error message
+      toast.error('Mobile number must contain exactly 10 digits.');
+      return;
+    }
+
+    // Password validation: Requires at least one letter and one number
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!password.match(passwordRegex)) {
+      // Display a toast error message for the password format
+      toast.error(
+        'Password must contain at least one letter and one number and be at least 8 characters long.'
+      );
+      return;
+    }
 
     // Basic client-side validations
     if (!companyname || !address || !mobileno || !email || !password) {
@@ -138,7 +154,7 @@ const SupplierForm = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary btn-lg">
           Add Supplier
         </button>
 
