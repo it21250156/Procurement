@@ -20,9 +20,9 @@ const SupplierOrders = () => {
 
   const headingText = 'Confirmed Orders';
 
-  // Function to handle changing order status
+  // handle changing order status
   const handleOrderStatusChange = (orderId, newStatus) => {
-    // Make an API call to update the order status
+    // API call to update the order status
     fetch('/api/updateorderstatus', {
       method: 'POST',
       headers: {
@@ -33,7 +33,6 @@ const SupplierOrders = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Order status updated:', data);
-        // You can update the state or perform any other necessary actions
       })
       .catch((error) => console.error(error));
   };
@@ -67,7 +66,6 @@ const SupplierOrders = () => {
                   <td>{confirmedOrder.order.item}</td>
                   <td>{confirmedOrder.order.quantity}</td>
                   <td>
-                    {/* Order status dropdown here */}
                     <select
                       value={confirmedOrder.orderstatus} // Set the initial value from the order's status
                       onChange={(e) =>

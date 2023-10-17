@@ -94,7 +94,7 @@ const UpdateSupplier = () => {
           setError(null);
           dispatch({ type: 'UPDATE_SUPPLIER', payload: json });
           console.log('Supplier updated', json);
-          // You should replace '/suppliers' with the correct path to your Suppliers page
+
           window.location.href = '/suppliers';
         }
       });

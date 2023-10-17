@@ -11,7 +11,7 @@ import NavbarSupplier from '../components/NavbarSupplier';
 
 const SupProducts = () => {
   const { products, dispatch } = useProductsContext();
-  const { supplier, dispatch: supplierDispatch } = useContext(SupplierContext); // Correct usage of useContext
+  const { supplier, dispatch: supplierDispatch } = useContext(SupplierContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -36,7 +36,6 @@ const SupProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // No need to access supplierInfo from localStorage, it already have it in the context
         if (!supplier || !supplier._id) {
           console.error("Invalid or incomplete 'supplierInfo' data:", supplier);
           return;
@@ -75,7 +74,7 @@ const SupProducts = () => {
         <Link to="/supplierOrders">
           <Button className="btn-primary m-2">Orders</Button>
         </Link>
-        {/** Logout button */}
+
         <Button className="btn-danger m-2" onClick={handleLogout}>
           Logout
         </Button>

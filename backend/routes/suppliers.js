@@ -6,7 +6,7 @@ const {
   createSupplier,
   deleteSupplier,
   updateSupplier,
-  loginSupplier, // Import the loginSupplier function
+  loginSupplier,
 } = require('../controllers/supplierController');
 
 // GET all suppliers
