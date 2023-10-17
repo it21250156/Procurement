@@ -4,7 +4,6 @@ import Swal from 'sweetalert2'; // Import the SweetAlert library
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const ProductDetails = ({ product }) => {
   const { dispatch } = useProductsContext();
